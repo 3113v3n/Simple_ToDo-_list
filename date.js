@@ -1,4 +1,4 @@
-exports.getDate = function (){
+exports.getDate = () => {
     const today =new Date();
     
 
@@ -13,7 +13,7 @@ return day;
 
 
 
-exports.getDay = function (){
+exports.getDay =  () => {
     const today =new Date();
     
 
