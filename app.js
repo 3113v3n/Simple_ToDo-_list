@@ -6,8 +6,14 @@ const date = require(__dirname +'/date.js');
 
 
 const app = express();
-const items= ["Buy food", "Cook Food", "Eat Food"];           
+
+const items= ["Drink", "Smoke", "Code"];           
 const workItems = [];
+const day = date.getDay();
+
+
+ 
+
 
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -15,31 +21,37 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => {
 
 
-const day = date.getDate();
+
+
+app.get('/', (req, res ) => {res.render('list', {listTitle: day, newListItems: items})});
+
+app.get('/work', (req,res) => res.render('list', {listTitle: "Work List", newListItems: workItems}));
+
+app.get('/about', (req, res) => res.render('about'));
 
 //Path to find the views folder and targert list.ejs
-res.render('list', {listTitle: day, newListItems: items});
 
 
 app.post('/', (req, res) => {
-    const item = req.body.newItem;
-    items.push(item); 
-    res.redirect('/');
+
+    //console.log(url.pathname);
+    let item = req.body.newItem;
+    let titleVal = req.body.listTitle;
+    console.log(item, titleVal);
+//     res.render('list', {listTitle: day, newListItems: items});
     
+// if (titleVal === 'Work List') {
+//     workItems.push(item);
+     
+// } else {
+//          items.push(item);
+//          res.redirect('/');
+//      }   
 });
 
 
-});
-app.get('/work', (req,res) => 
- res.render('list', {listTitle: "Work List", newListItems: workItems}));
 
- app.post('/work', (req, res) => { 
- const item = req.body.newItem;
- workItems.push(item);
- res.redirect('/work');
-});
 
 app.listen(3000, () => console.log('server started on port 3000'));

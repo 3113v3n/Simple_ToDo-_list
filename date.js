@@ -7,8 +7,8 @@ const options = {
     day: 'numeric',
     month: 'long'
 };
-const day = today.toLocaleDateString('en-US', options);
-return day;
+return today.toLocaleDateString('en-US', options);
+
 }
 
 
@@ -21,8 +21,7 @@ const options = {
     weekday: 'long',
    
 };
-const day = today.toLocaleDateString('en-US', options);
-return day;
+return today.toLocaleDateString('en-US', options);
 };
 
 
