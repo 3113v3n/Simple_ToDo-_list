@@ -36,19 +36,22 @@ app.get('/about', (req, res) => res.render('about'));
 
 app.post('/', (req, res) => {
 
-    //console.log(url.pathname);
     let item = req.body.newItem;
-    let titleVal = req.body.listTitle;
-    console.log(item, titleVal);
-//     res.render('list', {listTitle: day, newListItems: items});
-    
-// if (titleVal === 'Work List') {
-//     workItems.push(item);
+    let titleVal = req.body.list;
+    /**
+     * Refers to the name given to button in ejs
+     */
+    if (titleVal === 'Work List') {
+    workItems.push(item);
+    res.redirect('/work');
+        /**
+         * Instead of rendering after post we redirect to respective GET pages and make a fetch request there
+         */
      
-// } else {
-//          items.push(item);
-//          res.redirect('/');
-//      }   
+} else {
+         items.push(item);
+         res.redirect('/');
+     }
 });
 
 
